@@ -1,33 +1,44 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import ImageBoxAnimated from './imageBoxAnimated';
 import baobabImage from './assets/baobabImage.jpg';
+import cameleon from './assets/cameleon.jpg';
+import lemur from './assets/lemur.jpg';
+import seaside from './assets/seaside.jpg';
 
-import BlackBoxAnimated from './BlackBoxAnimated';
 const Wrapper = styled.div`
-
+  display: flex;
+  width: 100%
 `
 
-const ImageBox = styled.div`
-width: 600px;
-height: 400px;
-background: url(${baobabImage});
-background-size: cover;
-background-position: center;
-`
+class App extends React.Component {
 
-
-class App extends Component {
   render() {
     return (
-      <Wrapper>
-        <ImageBox>
-          <BlackBoxAnimated/>
-          <BlackBoxAnimated/>
-          <BlackBoxAnimated/>
-          <BlackBoxAnimated/>
-        </ImageBox>
-      </Wrapper>
-    );
+      <div>
+        <Wrapper>
+          <ImageBoxAnimated
+            image={baobabImage}
+            height={400}
+          />
+          <ImageBoxAnimated
+            image={lemur}
+            height={400}
+          />
+          </Wrapper>
+          <Wrapper>
+            <ImageBoxAnimated
+              image={cameleon}
+              height={400}
+            />
+            <ImageBoxAnimated
+              image={seaside}
+              height={400}
+            />
+          </Wrapper>
+        </div>
+      
+        );
   }
 }
 

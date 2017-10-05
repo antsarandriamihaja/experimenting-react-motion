@@ -1,22 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Motion, spring } from 'react-motion';
-
+import PropTypes from 'prop-types';
 const BlackBox = styled.div`
-height: 25%;
+height: ${(props) => props.heightPercentage}%;
 width: 100%;
 background: #000;
-transform-origin: right center;
+transform-origin: ${(props) => props.xDirection} center;
 `
 
-const BlackBoxAnimated = () => {
+const BlackBoxAnimated = ({ startAnimation = false, reverseDirection = false , heightPercentage }) => {
     return (
         <Motion
             defaultStyle={{ scaleX: 1 }}
-            style={{ scaleX: spring(0) }}
+            style={{ scaleX: spring( startAnimation ? 0 : 1 ) }}
         >
             {(style) =>
                 <BlackBox
+                heightPercentage = {heightPercentage}
+                xDirection = {reverseDirection ? 'left' : 'right'}
                     style={{
                         transform: `scaleX(${style.scaleX})`
                     }}
@@ -27,7 +29,9 @@ const BlackBoxAnimated = () => {
 }
 
 BlackBoxAnimated.prototypes = {
-
+    startAnimation: PropTypes.bool,
+    heightPercentage: PropTypes.number.isRequired,
+    reverseDirection: PropTypes.bool,
 };
 
 export default BlackBoxAnimated;
